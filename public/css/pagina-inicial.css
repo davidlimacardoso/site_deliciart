@@ -1,0 +1,230 @@
+.left,
+.right {
+	top: 30%;
+	float: right;
+	transform: translateY(50%);
+	position: fixed;
+	border-bottom-right-radius: 10px;
+	border-top-right-radius: 10px;
+	z-index: 1;
+}
+
+.left {
+	background: saddlebrown;
+	display: inline-block;
+	white-space: nowrap;
+	width: 50px;
+	transition: width .5s;
+}
+
+.right {
+	background: #fff;
+	width: 350px;
+	transition: width 1s;
+	border-style: solid;
+	border-color: #ccc;
+	border-width: 1px;
+}
+
+.left:hover {
+	width: 130px;
+}
+
+.item:hover {
+	background-color: hotpink;
+	border-bottom-right-radius: 10px;
+	border-top-right-radius: 10px;
+}
+
+.left .fas {
+	margin: 15px;
+	width: 20px;
+	color: #fff;
+}
+
+i.fas {
+	font-size: 17px;
+	vertical-align: middle !important;
+}
+
+.item {
+	height: 50px;
+	overflow: hidden;
+	color: #fff;
+}
+
+/*SIDE MENU DIREITO*/
+.d-left,
+.d-right {
+	top: 30%;
+	float: right;
+	transform: translateY(50%);
+	position: fixed;
+	border-bottom-right-radius: 50px;
+	border-top-right-radius: 50px;
+	z-index: 1;
+}
+
+.pointer {
+	cursor: pointer;
+}
+
+.d-left {
+	background: dodgerblue;
+	display: inline-block;
+}
+
+.d-right {
+	background: #fff;
+	width: 350px;
+	transition: width 1s;
+	border-style: solid;
+	border-color: #ccc;
+	border-width: 1px;
+}
+
+.item {
+	height: 50px;
+	overflow: hidden;
+	color: #fff;
+}
+
+
+#cards_pagina {
+	float: left;
+}
+
+@font-face {
+	font-family: Aprilea;
+
+	/*Caso a fonte esteja na mesma pasta*/
+	src: url(../fonts/Aprilea.ttf);
+}
+
+html {
+	height: 100%;
+	min-height: 100%;
+}
+
+body {
+
+	background: rgb(254, 204, 205);
+	background: linear-gradient(180deg, rgba(255, 219, 255,  1) 0%, rgba(254, 204, 205, 1) 0%, rgba(255, 255, 240, 1) 92%);
+	background-repeat: no-repeat;
+	background-size: cover;
+	display: flex;
+	flex-direction: column;
+	min-height: 100%;
+}
+
+header{
+	color: white;
+}
+
+footer {
+	/* margin-top: auto; */
+	background-color: pink;
+	max-height: 215px;
+	width: 100%;
+}
+
+
+.sombra_texto {
+	text-shadow: 0.1em 0.2em 0.1em black;
+}
+
+header {
+	font-family: Aprilea;
+}
+
+article {
+	font-family: Aprilea;
+	color: saddlebrown;
+}
+
+.banner {
+	background-image: url(../content_site/imagens/background_doce.jpg);
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	background-position: 100% 10%;
+}
+
+/*BOTÃO COR MARROM*/
+.button_brown {
+	background-color: saddlebrown;
+}
+/*BOTÃO MARROM EFEITO ROSA*/
+
+.btn-brown {
+	color: #fff;
+	background-color: saddlebrown;
+	border-color: rosybrown;
+  }
+  
+  .btn-brown:hover {
+	color: #fff;
+	background-color: pink;
+	border-color: saddlebrown;
+  }
+  
+  .btn-brown:focus, .btn-brown.focus {
+	box-shadow: 0 0 0 0.2rem rgba(184,115,51, 0.5);
+  }
+  
+  .btn-brown.disabled, .btn-brown:disabled {
+	color: #fff;
+	background-color: saddlebrown;
+	border-color: saddlebrown;
+  }
+  
+  .btn-brown:not(:disabled):not(.disabled):active, .btn-brown:not(:disabled):not(.disabled).active,
+  .show > .btn-brown.dropdown-toggle {
+	color: #fff;
+	background-color: saddlebrown;
+	border-color: saddlebrown;
+  }
+  
+  .btn-brown:not(:disabled):not(.disabled):active:focus, .btn-brown:not(:disabled):not(.disabled).active:focus,
+  .show > .btn-brown.dropdown-toggle:focus {
+	box-shadow: 0 0 0 0.2rem rgba(184,115,51, 0.5);
+  }
+  
+  /*FIM BOTÃO MARROM EFEITO ROSA*/
+
+/*BOTÃƒO COR MARROM*/
+
+/*FONT APRILEA*/
+.font_aprilea {
+	font-family: Aprilea;
+
+}
+
+/*FONT APRILEA*/
+
+/*CARDS PÁGINA INICIAL*/
+.card-img-top {
+	height: 300px;
+}
+
+.sombra_texto_card {
+	text-shadow: 0.1em 0.1em 0.1em black;
+}
+
+.card:hover{
+	-webkit-transform: scale(1.1);
+  	-moz-transform: scale(1.1);
+  	-o-transform: scale(1.1);
+  	-ms-transform: scale(1.1);
+	  transform: scale(1.1);
+	  transition-duration: 500ms ;
+}
+
+/* ------------------POPOVER---------------------- */
+.bs-example {
+	margin: 150px 50px;
+}
+.po-pink{
+	background-color: lightpink;
+}

@@ -1,0 +1,17 @@
+.parallax {
+  /* The image used */
+  background-image: url(../content_site/imagens/background_doce.jpg);
+        
+  /* Set a specific height */
+  height: 300px;
+        
+  /* Create the parallax scrolling effect */
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.team-img {
+  margin-top: -80px;
+}
