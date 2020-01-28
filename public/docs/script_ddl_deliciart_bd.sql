@@ -1,10 +1,16 @@
--- Geração de Modelo físico
--- Sql ANSI 2003 - brModelo.
+/*
+Autor: David de Lima Cardoso;
+Banco: DeliciArt
+DescriÃ§Ã£o: Banco do site DeliciArt
+*/
 
+DROP DATABASE IF EXISTS db_deliciart;
+CREATE DATABASE db_deliciart;
 
+USE db_deliciart;
 
-CREATE TABLE tb_usuarios (
-idUsuario INT AUTO_INCREMENT PRIMARY KEY,
+CREATE TABLE tb_clientes (
+idCliente INT AUTO_INCREMENT PRIMARY KEY,
 nome VARCHAR(200) NOT NULL,
 email VARCHAR(200) UNIQUE,
 senha VARCHAR(50) NOT NULL,
@@ -15,25 +21,7 @@ dataMod DATETIME,
 infAdicionais BOOL NOT NULL,
 notificacao BOOL NOT NULL,
 fkIdFavorito INT
-)
-
-CREATE TABLE tb_msg_usuario (
-idMsgUsuario INT AUTO_INCREMENT PRIMARY KEY,
-assunto VARCHAR(20) NOT NULL,
-mensagem VARCHAR(500) NOT NULL,
-fkIdRspAdmin INT,
-dataEnvio DATETIME NOT_NULL,
-situacao BOOL NOT NULL
-)
-
-CREATE TABLE tb_rsp_admin (
-idRespAdmin INT AUTO_INCREMENT PRIMARY KEY,
-fkIdMsgUsuario INT NOT NULL,
-resposta VARCHAR(200) NOT NULL,
-fkIdAdmin INT,
-dataRsp DATETIME,
-FOREIGN KEY(fkIdMsgUsuario) REFERENCES tb_msg_usuario (idMsgUsuario)
-)
+);
 
 CREATE TABLE tb_conf_site (
 idConfSite INT PRIMARY KEY,
@@ -54,14 +42,14 @@ numero VARCHAR(5),
 cep VARCHAR(8),
 complemento VARCHAR(30),
 dataModificacao DATETIME NOT NULL,
-fkIdAdmin INT
-)
+fkIdUsuario INT
+);
 
-CREATE TABLE tb_inf_usuarios (
-idInfUsuario INT AUTO_INCREMENT PRIMARY KEY,
+CREATE TABLE tb_inf_clientes (
+idInfCliente INT AUTO_INCREMENT PRIMARY KEY,
 celular VARCHAR(13) NOT NULL,
 telefone VARCHAR(12),
-cpfCnpj VARCHAR(14) UNIQUE, NOT NULL,
+cpfCnpj VARCHAR(14) UNIQUE NOT NULL,
 estado VARCHAR(2) NOT NULL,
 cidade VARCHAR(50) NOT NULL,
 bairro VARCHAR(50) NOT NULL,
@@ -69,8 +57,8 @@ rua VARCHAR(80) NOT NULL,
 numero VARCHAR(5) NOT NULL,
 complemento VARCHAR(30),
 cep VARCHAR(8) NOT NULL,
-fkIdUsuario INT,
-FOREIGN KEY(fkIdUsuario) REFERENCES tb_usuarios (idUsuario)
+fkIdcliente INT,
+FOREIGN KEY(fkIdcliente) REFERENCES tb_clientes (idCliente)
 )
 
 CREATE TABLE tb_un_medida (
@@ -78,24 +66,18 @@ idUnMedida INT AUTO_INCREMENT PRIMARY KEY,
 nomeUn VARCHAR(10),
 abrevitura VARCHAR(5),
 estado BOOL
-)
+);
+
+CREATE TABLE tb_cat_produto (
+idCategoria INT AUTO_INCREMENT PRIMARY KEY,
+nome VARCHAR(50),
+estado BOOL
+);
 
 CREATE TABLE tb_tipo_produto (
 idTipoProduto INT AUTO_INCREMENT PRIMARY KEY,
 nomeTipoProduto VARCHAR(30)
-)
-
-CREATE TABLE tb_admin (
-idAdmin INT AUTO_INCREMENT PRIMARY KEY,
-nome VARCHAR(50) NOT NULL,
-usuario VARCHAR(30) NOT NULL,
-senha VARCHAR(256) NOT NULL,
-situacao BOOL(2) NOT NULL,
-emailAdmin VARCHAR(200) NOT NULL,
-dataCad DATETIME NOT NULL,
-dataMod DATETIME,
-dataDes DATETIME
-)
+);
 
 CREATE TABLE tb_produto (
 idProduto INT AUTO_INCREMENT PRIMARY KEY,
@@ -105,43 +87,75 @@ descricao VARCHAR(300),
 preco DOUBLE(8,2),
 fkCatProduto INT,
 fkTipoProduto INT,
-fkIdAdmin INT,
+fkIdUsuario INT,
 fkIdUnMedida INT,
 dataCad DATETIME,
 dataMod DATETIME,
 dataDes DATETIME,
 estado BOOL,
 quantidade INT,
+numFavoritos INT,
+FOREIGN KEY(fkCatProduto) REFERENCES tb_cat_produto (idCategoria),
 FOREIGN KEY(fkTipoProduto) REFERENCES tb_tipo_produto (idTipoProduto),
-FOREIGN KEY(fkIdAdmin) REFERENCES tb_admin (idAdmin),
 FOREIGN KEY(fkIdUnMedida) REFERENCES tb_un_medida (idUnMedida)
-)
+);
 
-CREATE TABLE tb_cat_produto (
-idCategoria INT AUTO_INCREMENT PRIMARY KEY,
-nome VARCHAR(50),
-estado BOOL
-)
-
-CREATE TABLE tb_fav_usuario (
+CREATE TABLE tb_fav_cliente (
 idFavorito INT AUTO_INCREMENT PRIMARY KEY,
 fkIdProduto INT,
 FOREIGN KEY(fkIdProduto) REFERENCES tb_produto (idProduto)
-)
+);
+
+CREATE TABLE tb_msg_cliente (
+idMsgCliente INT AUTO_INCREMENT PRIMARY KEY,
+assunto VARCHAR(20) NOT NULL,
+mensagem VARCHAR(500) NOT NULL,
+fkIdRspAdmin INT,
+dataEnvio DATETIME NOT NULL,
+situacao BOOL NOT NULL
+);
+
+CREATE TABLE tb_usuario (
+idUsuario INT AUTO_INCREMENT PRIMARY KEY,
+nome VARCHAR(50) NOT NULL,
+usuario VARCHAR(30) NOT NULL,
+senha VARCHAR(256) NOT NULL,
+situacao BOOL NOT NULL,
+emailAdmin VARCHAR(200) NOT NULL,
+dataCad DATETIME NOT NULL,
+dataMod DATETIME,
+dataDes DATETIME,
+fkIdPerfil INT
+);
 
 CREATE TABLE tb_galeria (
 idGaleria INT AUTO_INCREMENT PRIMARY KEY,
-fkIdAdmin INT,
+fkIdUsuario INT,
 urlImage VARCHAR(300),
 titulo VARCHAR(30),
 descricao VARCHAR(300),
 dataUp DATETIME,
 estado BOOL,
-FOREIGN KEY(fkIdAdmin) REFERENCES tb_admin (idAdmin)
-)
+FOREIGN KEY(fkIdUsuario) REFERENCES tb_usuario (idUsuario)
+);
 
-ALTER TABLE tb_usuarios ADD FOREIGN KEY(fkIdFavorito) REFERENCES tb_fav_usuario (idFavorito)
-ALTER TABLE tb_msg_usuario ADD FOREIGN KEY(fkIdRspAdmin) REFERENCES tb_rsp_admin (idRespAdmin)
-ALTER TABLE tb_rsp_admin ADD FOREIGN KEY(fkIdAdmin) REFERENCES tb_admin (idAdmin)
-ALTER TABLE tb_conf_site ADD FOREIGN KEY(fkIdAdmin) REFERENCES tb_admin (idAdmin)
-ALTER TABLE tb_produto ADD FOREIGN KEY(fkCatProduto) REFERENCES tb_cat_produto (idCategoria)
+CREATE TABLE tb_rsp_admin (
+idRespAdmin INT AUTO_INCREMENT PRIMARY KEY,
+fkIdMsgCliente INT NOT NULL,
+resposta VARCHAR(200) NOT NULL,
+fkIdUsuario INT,
+dataRsp DATETIME,
+FOREIGN KEY(fkIdMsgCliente) REFERENCES tb_msg_cliente (idMsgCliente),
+FOREIGN KEY(fkIdUsuario) REFERENCES tb_usuario (idUsuario)
+);
+
+CREATE TABLE tb_perfil (
+idPerfil INT AUTO_INCREMENT PRIMARY KEY,
+nomePerfil VARCHAR(15)
+);
+
+ALTER TABLE tb_clientes ADD FOREIGN KEY(fkIdFavorito) REFERENCES tb_fav_cliente (idFavorito);
+ALTER TABLE tb_conf_site ADD FOREIGN KEY(fkIdUsuario) REFERENCES tb_usuario (idUsuario);
+ALTER TABLE tb_produto ADD FOREIGN KEY(fkIdUsuario) REFERENCES tb_usuario (idUsuario);
+ALTER TABLE tb_msg_cliente ADD FOREIGN KEY(fkIdRspAdmin) REFERENCES tb_rsp_admin (idRespAdmin);
+ALTER TABLE tb_usuario ADD FOREIGN KEY(fkIdPerfil) REFERENCES tb_perfil (idPerfil);

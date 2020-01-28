@@ -32,6 +32,13 @@ Route::view('administracao/painel', 'admin/painel');
 Route::view('administracao/usuarios', 'admin/users');
 
 
+
+//----------------------------------------------------------------------//
+//                          CONTROLLER ROUTES                           //
+//----------------------------------------------------------------------//
+
+Route::post('/addUserFormSubmit','UsersController@addUserformSubmit');
+
 // Auth::routes();
 
 // Route::get('/home', 'HomeController@index')->name('home');
