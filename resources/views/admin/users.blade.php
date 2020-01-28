@@ -2,6 +2,9 @@
 
 @section('admin-body')
 
+@push('styles')
+  <link rel="stylesheet" href="{{asset("css/users.css")}}">
+@endpush
 <div class="content p-1">
     <div class="list-group-item">
         <div class="d-flex">
@@ -80,10 +83,33 @@
                 @endforeach
             </ul>
         </div>
-@endif
-     
+        @endif
+    </div>
+    <div class="table-responsive">
+      <table class="table border bg-white mt-2 text-center">
+        <thead class="border bg-secondary text-white">
+          <tr>
+            <th scope="col">Nome</th>
+            <th scope="col">E-mail</th>
+            <th scope="col">Data Cadastro</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <!--RETORNAR DADOS DO BANCO-->
+            @foreach ($data as $listUser)   
+          <td><span class="d-inline text-truncate">{{$listUser->nome}}</span></td>
+            <td><span class="d-inline text-truncate">{{$listUser->emailAdmin}}</span></td>
+            <td><span class="d-inline text-truncate">{{$listUser->dataCad}}</span></td>
+            @endforeach
+          </tr>
+        </tbody>
+      </table>  
     </div>
 </div>
-
     @parent
 @endsection
+
+@push('script-bottom')
+  <script src="{{asset('js/jquery.validate.min.js')}}"></script>
+@endpush

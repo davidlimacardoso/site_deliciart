@@ -32,12 +32,20 @@ Route::view('administracao/painel', 'admin/painel');
 Route::view('administracao/usuarios', 'admin/users');
 
 
-
 //----------------------------------------------------------------------//
 //                          CONTROLLER ROUTES                           //
 //----------------------------------------------------------------------//
 
 Route::post('/addUserFormSubmit','UsersController@addUserformSubmit');
+
+
+
+//----------------------------------------------------------------------//
+//                          DATABASE ROUTES                             //
+//----------------------------------------------------------------------//
+
+//Listar usuários do bd
+Route::get('administracao/usuarios','UsersController@listUsers');
 
 // Auth::routes();
 

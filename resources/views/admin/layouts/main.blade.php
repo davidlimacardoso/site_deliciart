@@ -30,10 +30,11 @@
 
     @section('admin-body')
        @parent
+       
+        <script src="{{asset('js/app.js')}}"></script>
+        <script src="{{asset('admin/dashboard.js')}}"></script>
+        @stack('script-bottom')
     @endsection
 
-    <script src="{{asset('js/app.js')}}"></script>
-    <script src="{{asset('admin/dashboard.js')}}"></script>
-@stack('script-bottom')
 </body>
 </html>
