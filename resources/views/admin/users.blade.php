@@ -33,15 +33,15 @@
                         @csrf
                           <div class="form-group">
                             <label>Nome</label>
-                            <input type="text" name="name" class="form-control" placeholder="Nome completo do usuário">
+                            <input type="text" name="name" onkeyup="maiuscula(this)" class="form-control" placeholder="Nome completo do usuário">
                           </div>
                           <div class="form-group">
                             <label>Email</label>
-                            <input type="email" name="email" class="form-control" placeholder="E-mail do usuário">
+                            <input type="email" name="email" onkeyup="maiuscula(this)" class="form-control" placeholder="E-mail do usuário">
                           </div>
                           <div class="form-group">
                             <label class="">Usuário</label>
-                            <input type="text" name="login" class="form-control" placeholder="Usuário de acesso">
+                            <input type="text" name="user" onkeyup="maiuscula(this)" class="form-control" placeholder="Usuário de acesso">
                           </div>
                           <div class="form-group">
                             <label>Senha</label>
@@ -53,10 +53,11 @@
                           </div>
                           <div class="form-group">
                             <label>Perfil</label>
-                            <select name="profile" class="form-control">
+                            <select name="profile" class="form-control custom-select">
                               <option selected>Selecione</option>
-                              <option value="1">Administrador</option>
-                              <option value="2">Desativado</option>
+                              @foreach ($profiles as $perfil)
+                            <option value="{{$perfil->idPerfil}}">{{$perfil->nomePerfil}}</option>
+                              @endforeach
                             </select>
                           </div>
                         </div>
@@ -70,7 +71,7 @@
                 </div>
               </div>
             <!--FIM modal add novo usuário-->
-        </div><hr>
+        </div>
         <!--ALERT-->
         @include('partials/_msg')  
 
@@ -84,29 +85,30 @@
             </ul>
         </div>
         @endif
+
+        <div class="table-responsive">
+          <table class="table border bg-white mt-2 text-center">
+            <thead class="border bg-secondary text-white rounded">
+              <tr>
+                <th scope="col">Nome</th>
+                <th scope="col">E-mail</th>
+                <th scope="col">Data Cadastro</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!--RETORNAR DADOS DO BANCO-->
+              @foreach ($users as $user)   
+              <tr>
+              <td><span class="d-inline text-truncate">{{$user->nome}}</span></td>
+                <td><span class="d-inline text-truncate">{{$user->emailAdmin}}</span></td>
+                <td><span class="d-inline text-truncate">{!! Helper::formatDatetimeBr($user->dataCad) !!}</span></td>
+              </tr>
+              @endforeach
+            </tbody>
+          </table>  
+        </div>
     </div>
-    <div class="table-responsive">
-      <table class="table border bg-white mt-2 text-center">
-        <thead class="border bg-secondary text-white">
-          <tr>
-            <th scope="col">Nome</th>
-            <th scope="col">E-mail</th>
-            <th scope="col">Data Cadastro</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <!--RETORNAR DADOS DO BANCO-->
-            @foreach ($data as $listUser)   
-          <td><span class="d-inline text-truncate">{{$listUser->nome}}</span></td>
-            <td><span class="d-inline text-truncate">{{$listUser->emailAdmin}}</span></td>
-            <td><span class="d-inline text-truncate">{{$listUser->dataCad}}</span></td>
-            @endforeach
-          </tr>
-        </tbody>
-      </table>  
     </div>
-</div>
     @parent
 @endsection
 

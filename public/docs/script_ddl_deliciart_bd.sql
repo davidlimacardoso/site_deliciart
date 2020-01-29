@@ -59,7 +59,7 @@ complemento VARCHAR(30),
 cep VARCHAR(8) NOT NULL,
 fkIdcliente INT,
 FOREIGN KEY(fkIdcliente) REFERENCES tb_clientes (idCliente)
-)
+);
 
 CREATE TABLE tb_un_medida (
 idUnMedida INT AUTO_INCREMENT PRIMARY KEY,
@@ -118,10 +118,10 @@ situacao BOOL NOT NULL
 CREATE TABLE tb_usuario (
 idUsuario INT AUTO_INCREMENT PRIMARY KEY,
 nome VARCHAR(50) NOT NULL,
-usuario VARCHAR(30) NOT NULL,
+usuario VARCHAR(30) NOT NULL UNIQUE,
 senha VARCHAR(256) NOT NULL,
 situacao BOOL NOT NULL,
-emailAdmin VARCHAR(200) NOT NULL,
+emailAdmin VARCHAR(200) NOT NULL UNIQUE,
 dataCad DATETIME NOT NULL,
 dataMod DATETIME,
 dataDes DATETIME,
@@ -159,3 +159,10 @@ ALTER TABLE tb_conf_site ADD FOREIGN KEY(fkIdUsuario) REFERENCES tb_usuario (idU
 ALTER TABLE tb_produto ADD FOREIGN KEY(fkIdUsuario) REFERENCES tb_usuario (idUsuario);
 ALTER TABLE tb_msg_cliente ADD FOREIGN KEY(fkIdRspAdmin) REFERENCES tb_rsp_admin (idRespAdmin);
 ALTER TABLE tb_usuario ADD FOREIGN KEY(fkIdPerfil) REFERENCES tb_perfil (idPerfil);
+
+INSERT INTO tb_perfil values (1,'Administrador');
+INSERT INTO tb_perfil values (2,'Operador');
+INSERT INTO tb_perfil values (3,'Postagem');
+
+INSERT INTO tb_usuario values (1,'ADMINISTRADOR','admin',md5('123'),1,'admin@admin.com',now(),now(),null,1);
+select * from tb_usuario;

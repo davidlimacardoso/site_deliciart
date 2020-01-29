@@ -36,6 +36,7 @@ Route::view('administracao/usuarios', 'admin/users');
 //                          CONTROLLER ROUTES                           //
 //----------------------------------------------------------------------//
 
+//Dados do formulario via post para cadastrar usuário 
 Route::post('/addUserFormSubmit','UsersController@addUserformSubmit');
 
 
@@ -44,8 +45,8 @@ Route::post('/addUserFormSubmit','UsersController@addUserformSubmit');
 //                          DATABASE ROUTES                             //
 //----------------------------------------------------------------------//
 
-//Listar usuários do bd
-Route::get('administracao/usuarios','UsersController@listUsers');
+//Listar usuários do bd para página usuários
+Route::get('administracao/usuarios','UsersController@usersPage');
 
 // Auth::routes();
 
