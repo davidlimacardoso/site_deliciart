@@ -4,6 +4,7 @@
 
 @push('styles')
   <link rel="stylesheet" href="{{asset("css/users.css")}}">
+  <link rel="stylesheet" href="//cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
 @endpush
 <div class="content p-1">
     <div class="list-group-item">
@@ -22,39 +23,39 @@
             <div class="modal fade" id="modalAddUser" tabindex="-1" role="dialog" aria-labelledby="TituloModalCentralizado" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                   <div class="modal-content">
-                    <div class="modal-header">
-                      <h3 class="modal-title m-auto pl-5">NOVO USUÁRIO</h3>
+                    <div class="modal-header bg-success text-center">
+                      <h3 class="modal-title m-auto pl-5 text-white">&ThinSpace; NOVO USUÁRIO</h3>
                       <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
                         <span aria-hidden="true">&times;</span>
                       </button>
                     </div>
                     <div class="modal-body">
-                      <form action="/addUserFormSubmit" method="POST">
+                      <form id="addUserForm" class="needs-validation" action="/addUserFormSubmit" method="POST">
                         @csrf
                           <div class="form-group">
                             <label>Nome</label>
-                            <input type="text" name="name" onkeyup="maiuscula(this)" class="form-control" placeholder="Nome completo do usuário">
+                            <input type="text" name="name" class="form-control" placeholder="Nome completo do usuário">
                           </div>
                           <div class="form-group">
                             <label>Email</label>
-                            <input type="email" name="email" onkeyup="maiuscula(this)" class="form-control" placeholder="E-mail do usuário">
+                            <input type="email" name="email" class="form-control" placeholder="E-mail do usuário">
                           </div>
                           <div class="form-group">
                             <label class="">Usuário</label>
-                            <input type="text" name="user" onkeyup="maiuscula(this)" class="form-control" placeholder="Usuário de acesso">
+                            <input type="text" name="user" class="form-control" placeholder="Usuário de acesso">
                           </div>
                           <div class="form-group">
                             <label>Senha</label>
-                            <input type="password" name="password" class="form-control" placeholder="Senha de acesso">
+                            <input id="password" type="password" name="password" class="form-control" placeholder="Senha de acesso">
                           </div>
                           <div class="form-group">
                             <label>Confirmar senha</label>
-                            <input type="password" name="confpassword" class="form-control" placeholder="Confirme a senha de acesso">
+                            <input id="confPassword" type="password" name="confpassword" class="form-control" placeholder="Confirme a senha de acesso">
                           </div>
                           <div class="form-group">
                             <label>Perfil</label>
                             <select name="profile" class="form-control custom-select">
-                              <option selected>Selecione</option>
+                              <option value="" selected>Selecione</option>
                               @foreach ($profiles as $perfil)
                             <option value="{{$perfil->idPerfil}}">{{$perfil->nomePerfil}}</option>
                               @endforeach
@@ -87,7 +88,7 @@
         @endif
 
         <div class="table-responsive">
-          <table class="table border bg-white mt-2 text-center">
+          <table id="tableUsers" class="table border bg-white mt-2 text-center">
             <thead class="border bg-secondary text-white rounded">
               <tr>
                 <th scope="col">Nome</th>
@@ -114,4 +115,11 @@
 
 @push('script-bottom')
   <script src="{{asset('js/jquery.validate.min.js')}}"></script>
+  <script src="{{asset('js/myValidations.js')}}"></script>
+  <script src="//cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+  <script>
+    $(document).ready( function () {
+    $('#tableUsers').DataTable();
+} );
+  </script>
 @endpush
