@@ -165,4 +165,9 @@ INSERT INTO tb_perfil values (2,'Operador');
 INSERT INTO tb_perfil values (3,'Postagem');
 
 INSERT INTO tb_usuario values (1,'ADMINISTRADOR','admin',md5('123'),1,'admin@admin.com',now(),now(),null,1);
-select * from tb_usuario;
+
+select * from tb_usuario TU
+	inner join tb_perfil TP
+	on TU.fkIdPerfil = TP.idPerfil;
+    
+update tb_usuario set situacao = '1' where situacao = 0;

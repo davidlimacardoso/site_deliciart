@@ -31,14 +31,19 @@ Route::view('administracao/painel', 'admin/painel');
 //ROTA PAINEL ADMINISTRADOR/USUARIOS
 Route::view('administracao/usuarios', 'admin/users');
 
-
 //----------------------------------------------------------------------//
 //                          CONTROLLER ROUTES                           //
 //----------------------------------------------------------------------//
 
-//Dados do formulario via post para cadastrar usuário 
+//Dados do formulario via post para cadastrar usuário
 Route::post('/addUserFormSubmit','UsersController@addUserformSubmit');
 
+//Desativar usuário
+Route::get('/disableUser/{id}/{nomeUser}','UsersController@disableUser');
+//Route::post('/disableUser/{id}','UsersController@disableUser');
+
+//Editar usuário
+Route::post('/editUserFormSubmit','UsersController@editUserFormSubmit');
 
 
 //----------------------------------------------------------------------//
@@ -48,6 +53,6 @@ Route::post('/addUserFormSubmit','UsersController@addUserformSubmit');
 //Listar usuários do bd para página usuários
 Route::get('administracao/usuarios','UsersController@usersPage');
 
-// Auth::routes();
+Auth::routes();
 
-// Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@index')->name('home');
