@@ -10,6 +10,7 @@ use App\Users\InsertUser;
 use App\Users\DisableUser;
 use App\System\ListProfile;
 use App\Users\EditUser;
+use Illuminate\Support\Facades\Hash;
 use Helper;     //HELPER FUNÇÕES PRÓPRIAS
 
 class UsersController extends Controller
@@ -43,7 +44,7 @@ class UsersController extends Controller
             $user = new InsertUser;
             $user->nome = Helper::upperCase($req->name);
             $user->usuario = $req->user;
-            // $user->senha = bcrypt($req->password);
+            $user->senha = Hash::make($req->password);
             $user->situacao = (1);
             $user->emailAdmin = Helper::lowerCase($req->email);
             $user->dataCad = now();
@@ -62,7 +63,7 @@ class UsersController extends Controller
     function usersPage(){
 
         //LISTAR TODOS OS USUÁRIOS E SEUS PERFIS
-        $users = ListUsers::join('tb_perfil','tb_usuario.fkIdPerfil','=','tb_perfil.idPerfil')
+        $users = ListUsers::join('tb_perfil','tb_usuario.fkIdPerfil','=','tb_perfil.id')
             ->where('situacao','1')
             ->orderBy('usuario','asc')
             ->get();
@@ -82,7 +83,7 @@ class UsersController extends Controller
 
         try{
             //UPDATE DA SITUAÇÃO DO USUARIO PARA O VALOR 1
-            DisableUser::where('idUsuario',$id)->update(['situacao'=>'0']);
+            DisableUser::where('id',$id)->update(['situacao'=>'0']);
             //$post->situacao = '0';
             return redirect('administracao/usuarios')->with('success_msg','Usuário '. $nomeUser .' desativado!');
         }catch(\Exception $e){
@@ -111,7 +112,7 @@ class UsersController extends Controller
 
         try{
 
-            EditUser::where('idUsuario',$req->id)
+            EditUser::where('id',$req->id)
             ->update([
                 'nome'          => Helper::upperCase($req->name),
                 'usuario'       => ($req->user),
