@@ -72,7 +72,7 @@ class UsersController extends Controller
 
         $dados = array($users,$profiles);
 
-        return view('admin/users',['users'=> $dados[0], 'profiles' => $dados[1] ]);
+        return view('admin/users',['users'=> $dados[0], 'profiles' => $dados[1]]);
 
         //LISTAR TODOS OS DADOS DA TABELA E RETORNAR PARA VARIÁVEL DATA
     }

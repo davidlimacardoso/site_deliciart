@@ -154,11 +154,34 @@ idPerfil INT AUTO_INCREMENT PRIMARY KEY,
 nomePerfil VARCHAR(15)
 );
 
+CREATE TABLE tb_site_sobre (
+idSobre INT PRIMARY KEY,
+fkIdUsuario INT,
+sobreTit1 VARCHAR(60),
+sobreTit1Cont VARCHAR(200),
+sobreTit1Img VARCHAR(300),
+sobreTit2 VARCHAR(60),
+sobreTit2Cont VARCHAR(200),
+sobreTit2Img VARCHAR(300),
+FOREIGN KEY(fkIdUsuario) REFERENCES tb_usuario (idUsuario)
+);
+
+ALTER TABLE tb_conf_site ADD FOREIGN KEY(fkIdUsuario) REFERENCES tb_usuario (idUsuario);
+ALTER TABLE tb_produto ADD FOREIGN KEY(fkIdUsuario) REFERENCES tb_usuario (idUsuario);
+ALTER TABLE tb_galeria ADD FOREIGN KEY(fkIdUsuario) REFERENCES tb_usuario (idUsuario);
+ALTER TABLE tb_rsp_admin ADD FOREIGN KEY(fkIdMsgCliente) REFERENCES tb_msg_cliente (idMsgCliente);
+ALTER TABLE tb_rsp_admin ADD FOREIGN KEY(fkIdUsuario) REFERENCES tb_usuario (idUsuario);
+ALTER TABLE tb_usuario ADD FOREIGN KEY(fkIdPerfil) REFERENCES tb_perfil (idPerfil);
+ALTER TABLE tb_clientes ADD FOREIGN KEY(fkIdFavorito) REFERENCES tb_fav_cliente (idFavorito);
+
+
+/*
 ALTER TABLE tb_clientes ADD FOREIGN KEY(fkIdFavorito) REFERENCES tb_fav_cliente (idFavorito);
 ALTER TABLE tb_conf_site ADD FOREIGN KEY(fkIdUsuario) REFERENCES tb_usuario (idUsuario);
 ALTER TABLE tb_produto ADD FOREIGN KEY(fkIdUsuario) REFERENCES tb_usuario (idUsuario);
 ALTER TABLE tb_msg_cliente ADD FOREIGN KEY(fkIdRspAdmin) REFERENCES tb_rsp_admin (idRespAdmin);
 ALTER TABLE tb_usuario ADD FOREIGN KEY(fkIdPerfil) REFERENCES tb_perfil (idPerfil);
+*/
 
 INSERT INTO tb_perfil values (1,'Administrador');
 INSERT INTO tb_perfil values (2,'Operador');
@@ -168,6 +191,6 @@ INSERT INTO tb_usuario values (1,'ADMINISTRADOR','admin',md5('123'),1,'admin@adm
 
 select * from tb_usuario TU
 	inner join tb_perfil TP
-	on TU.fkIdPerfil = TP.idPerfil;
+	on TU.fkIdPerfil = TG.idPerfil;
     
-update tb_usuario set situacao = '1' where situacao = 0;
+update tb_usuario set situacao = '1' where idUsuario = 3;

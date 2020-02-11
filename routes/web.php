@@ -31,6 +31,8 @@ Route::view('administracao/painel', 'admin/painel');
 //ROTA PAINEL ADMINISTRADOR/USUARIOS
 Route::view('administracao/usuarios', 'admin/users');
 
+Route::view('/erro', 'admin/layouts/erro');
+
 //----------------------------------------------------------------------//
 //                          CONTROLLER ROUTES                           //
 //----------------------------------------------------------------------//

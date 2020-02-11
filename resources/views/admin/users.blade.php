@@ -151,13 +151,13 @@
                         </button> --}}
                         <!--EDITAR-->
                         <div class="btn-group" role="group">
-                            <a class="btn btn-primary" role="button" data-toggle="modal" data-target="#modalEditUser"
-                            data-nome="{{$user->nome}}"
-                            data-usuario="{{$user->usuario}}"
-                            data-id="{{$user->idUsuario}}"
-                            data-email="{{$user->emailAdmin}}"
-                            data-situacao="{{$user->situacao}}"
-                            data-perfil="{{$user->idPerfil}}">
+                            <a class="btn btn-primary text-white" role="button" data-toggle="modal" data-target="#modalEditUser"
+                                data-nome="{{$user->nome}}"
+                                data-usuario="{{$user->usuario}}"
+                                data-id="{{$user->idUsuario}}"
+                                data-email="{{$user->emailAdmin}}"
+                                data-situacao="{{$user->situacao}}"
+                                data-perfil="{{$user->idPerfil}}">
                                 <i class="fas fa-user-edit"></i>
                             </a>
                         </td>
