@@ -1,4 +1,4 @@
-<footer class="text-white">
+<footer class="text-white footer navbar-fixed-bottom">
     <div class="container-fluid pt-2">
         <div class="row text-center">
             <div class="col-md-6 col-sm-6 col-xs-12">
@@ -39,6 +39,6 @@
             </div>
         </div>
         </div>
-        
+
     </div>
 </footer>

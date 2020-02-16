@@ -1,3 +1,16 @@
+/*BODY*/
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+}
+
+/*FOOTER*/
+footer {
+    margin-top: auto;
+}
+
 .left,
 .right {
 	top: 30%;
@@ -162,35 +175,35 @@ article {
 	background-color: saddlebrown;
 	border-color: rosybrown;
   }
-  
+
   .btn-brown:hover {
 	color: #fff;
 	background-color: pink;
 	border-color: saddlebrown;
   }
-  
+
   .btn-brown:focus, .btn-brown.focus {
 	box-shadow: 0 0 0 0.2rem rgba(184,115,51, 0.5);
   }
-  
+
   .btn-brown.disabled, .btn-brown:disabled {
 	color: #fff;
 	background-color: saddlebrown;
 	border-color: saddlebrown;
   }
-  
+
   .btn-brown:not(:disabled):not(.disabled):active, .btn-brown:not(:disabled):not(.disabled).active,
   .show > .btn-brown.dropdown-toggle {
 	color: #fff;
 	background-color: saddlebrown;
 	border-color: saddlebrown;
   }
-  
+
   .btn-brown:not(:disabled):not(.disabled):active:focus, .btn-brown:not(:disabled):not(.disabled).active:focus,
   .show > .btn-brown.dropdown-toggle:focus {
 	box-shadow: 0 0 0 0.2rem rgba(184,115,51, 0.5);
   }
-  
+
   /*FIM BOTÃO MARROM EFEITO ROSA*/
 
 /*BOTÃƒO COR MARROM*/
