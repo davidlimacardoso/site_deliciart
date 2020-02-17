@@ -16,6 +16,9 @@ Route::get('/', function () {
     return view('inicio');
 });
 
+//----------------------------------------------------------------------//
+//                          PAGES ROUTES                           //
+//----------------------------------------------------------------------//
 //ROTA GALERIA DE FOTOS
 Route::view('galeria', 'gallery');
 
@@ -24,6 +27,12 @@ Route::view('sobre', 'about');
 
 //ROTA PÁGINA CONTATO
 Route::view('contato', 'contact');
+
+//ROTA PÁGINA CONTATO
+Route::view('acesso', 'access');
+
+//ROTA ACESSO A ADMINISTRAÇÃO
+Route::view('administracao/acesso','admin/access');
 
 //ROTA PAINEL ADMINISTRADOR
 Route::view('administracao/painel', 'admin/painel');

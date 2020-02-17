@@ -15,16 +15,14 @@
 			<div class="row mt-3">
 				<div class="form-group col-11 col-sm-8 col-md-6 col-lg-4 mx-auto iconInput">
 					<i class="text-dark fas fa-user h5 font-weight-bold"></i>
-					<input type="text" class="placeholder form-control font-weight-bold shadow" name="name" placeholder="USUÁRIO" id="email">
-					<div class="invalid-feedback d-none" id="emailErro">Por favor, digite seu email ou nome de usuário!</div>
+					<input type="text" class="placeholder form-control font-weight-bold shadow" name="name" placeholder="USUÁRIO">
 				</div>
 			</div>
 
 			<div class="row">
 				<div class="form-grou col-11 col-sm-8 col-md-6 col-lg-4  mx-auto iconInput">
 					<i class="text-dark fas fa-lock h5 font-weight-bold "></i>
-					<input class="placeholder form-control font-weight-bold shadow" type="password" name="password" placeholder="SENHA" id="senha">
-					<div class="invalid-feedback d-none" id="senhaErro">Por favor, digite uma senha válida!</div>
+					<input class="placeholder form-control font-weight-bold shadow" type="password" name="password" placeholder="SENHA">
 				</div>
 			</div>
 
