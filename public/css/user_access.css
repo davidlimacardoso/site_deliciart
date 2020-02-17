@@ -1,0 +1,18 @@
+/*INPUT ICON*/
+.iconInput {
+    position: relative;
+}
+
+.iconInput input {
+    padding-left: 28px;
+}
+.iconInput i {
+    position: absolute;
+    padding: 9px 10px;
+ }
+.placeholder {
+    text-align: center;
+
+}
+
+/*  */
